@@ -10,8 +10,9 @@ class HolidayManager {
             System.out.println("2. Check if a Date is a Holiday");
             System.out.println("3. List all Holidays");
             System.out.println("4. Monthly Calendar");
-            System.out.println("5. Delete Holiday");
-            System.out.println("6. Exit");
+            System.out.println("5. Modify a Holiday");
+            System.out.println("6. Delete Holiday");
+            System.out.println("7. Exit");
             System.out.print("Enter option: ");
 
             int option = scanner.nextInt();
@@ -49,11 +50,20 @@ class HolidayManager {
                     calendar.listHolidaysByMonth(month, year);
                     break;
                 case 5:
+                    System.out.print("Enter date (dd/mm/yyyy) to modify: ");
+                    date = scanner.nextLine();
+                    System.out.print("Enter new holiday name: ");
+                    name = scanner.nextLine();
+                    calendar.deleteHoliday(date);
+                    calendar.addHoliday(new Holiday(date, name));
+                    System.out.println("Holiday modified successfully.");
+                    break;
+                case 6:
                     System.out.print("Enter date (dd/mm/yyyy) to delete: ");
                     date = scanner.nextLine();
                     calendar.deleteHoliday(date);
                     break;
-                case 6:
+                case 7:
                     String[] spinnerFrames = { "-", "/", "|", "\\" };
                     int iterations = 5;
                     for (int i = 0; i < iterations; i++) {
