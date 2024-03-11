@@ -24,9 +24,9 @@ class HolidayManager {
                     System.out.print("Enter holiday name: ");
                     Scanner lineScanner = new Scanner(System.in).useDelimiter("\n");
                     String name = lineScanner.next();
-                    lineScanner.close();
                     calendar.addHoliday(new Holiday(date, name));
                     System.out.println("Holiday added successfully.");
+                    // lineScanner.close(); // Doesn't work, when uncommented, (Tested)
                     break;
                 case 2:
                     System.out.print("Enter date (dd/mm/yyyy) to check: ");
