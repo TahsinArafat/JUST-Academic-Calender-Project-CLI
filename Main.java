@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
 
     static void ClearScreen() {
-        System.out.print("\033[H\033[2J");
+        System.out.print("\033[H\033[2J"); // Clears the terminal
         System.out.flush();
     }
 
