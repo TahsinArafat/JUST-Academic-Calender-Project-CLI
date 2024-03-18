@@ -18,6 +18,8 @@ class HolidayManager {
             int option = scanner.nextInt();
             scanner.nextLine(); // Consume newline
             // ClearScreen();
+            System.out.print("\033[H\033[2J"); // Clears the terminal
+            System.out.flush();
             switch (option) {
                 case 1:
                     System.out.print("Enter date (dd/mm/yyyy): ");
