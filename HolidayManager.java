@@ -47,7 +47,6 @@ public class HolidayManager {
                     String name = lineScanner.next();
                     calendar.addHoliday(new Holiday(date, name));
                     System.out.println("Holiday added successfully.");
-                    // lineScanner.close(); // Doesn't work, when uncommented, (Tested)
                     break;
                 case 2:
                     System.out.print("Enter date (dd/mm/yyyy) to check: ");
@@ -108,6 +107,10 @@ public class HolidayManager {
                         case 1:
                             System.out.print("Enter day of week (1-7, Starts from Sunday): ");
                             int day = Integer.valueOf(scanner.nextLine());
+                            if (day < 1 || day > 7) {
+                                System.out.println("Invalid day of week. Please try again.");
+                                break;
+                            }
                             weekends.add(day);
                             System.out.println("Weekend added successfully.");
                             break;
@@ -122,7 +125,12 @@ public class HolidayManager {
                             }
                             break;
                         case 3:
-                            System.out.println("Weekends: " + weekends);
+                            // if empty print "No weekends added yet."
+                            if (weekends.isEmpty()) {
+                                System.out.println("No weekends added yet.");
+                            } else {
+                                System.out.println("Weekends: " + weekends);
+                            }
                             break;
                         default:
                             System.out.println("Invalid option. Please try again.");

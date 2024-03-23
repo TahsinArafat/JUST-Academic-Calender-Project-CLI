@@ -17,9 +17,7 @@ public class MonthlyCalender {
         int day = Integer.parseInt(parts[0]);
         int month = Integer.parseInt(parts[1]);
         int year = Integer.parseInt(parts[2]);
-        LocalDate localDate = LocalDate.of(year, month, day);
-        int dayOfWeek = localDate.getDayOfWeek().getValue();
-        return dayOfWeek % 7 + 1;
+        return getDayOfWeek(day, month, year);
     }
 
     static int getDayOfWeek(int day, int month, int year) {
