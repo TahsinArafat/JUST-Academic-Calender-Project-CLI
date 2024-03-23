@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
 class HolidayManager {
+    Calendar calendar = new Calendar();
+
     void run() {
         Scanner scanner = new Scanner(System.in);
-        Calendar calendar = new Calendar();
         while (true) {
             System.out.println("\nHello, Calendar Manager! What would you like to do?\n");
             System.out.println("1. Add Holiday");
@@ -12,7 +13,7 @@ class HolidayManager {
             System.out.println("4. Monthly Calendar");
             System.out.println("5. Modify a Holiday");
             System.out.println("6. Delete Holiday");
-            System.out.println("7. Exit");
+            System.out.println("0. Exit");
             System.out.print("Enter option: ");
 
             int option = scanner.nextInt();
@@ -65,7 +66,7 @@ class HolidayManager {
                     date = scanner.nextLine();
                     calendar.deleteHoliday(date);
                     break;
-                case 7:
+                case 0:
                     String[] spinnerFrames = { "-", "/", "|", "\\" };
                     int iterations = 5;
                     for (int i = 0; i < iterations; i++) {

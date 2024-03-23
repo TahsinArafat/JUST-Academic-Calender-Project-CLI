@@ -13,7 +13,7 @@ public class Main {
             ClearScreen();
             System.out.println("\nJUST Academic Calender Management System v1.0\n");
             System.out.println("1. Enter the System");
-            System.out.println("2. Terminate the System\n");
+            System.out.println("0. Terminate the System\n");
             System.out.print("Enter option: ");
             Scanner tmpScan = new Scanner(System.in);
             int choice = Integer.valueOf(tmpScan.nextLine());
@@ -22,7 +22,7 @@ public class Main {
                     ClearScreen();
                     holidayManager.run();
                     break;
-                case 2:
+                case 0:
                     System.out.println("System terminated.");
                     return;
                 default:
