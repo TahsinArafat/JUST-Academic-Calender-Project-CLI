@@ -32,6 +32,27 @@ class Calendar {
         return "No holiday";
     }
 
+    public Boolean isValidDayFormat(String date) {
+        String[] dateParts = date.split("/");
+        if (dateParts.length != 3) {
+            return false;
+        }
+        if (dateParts[0].length() != 2 || dateParts[1].length() != 2 || dateParts[2].length() != 4) {
+            return false;
+        }
+        try {
+            int day = Integer.parseInt(dateParts[0]);
+            int month = Integer.parseInt(dateParts[1]);
+            int year = Integer.parseInt(dateParts[2]);
+            if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1000 || year > 9999) {
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
     public void listHolidays() {
         if (holidays.isEmpty()) {
             System.out.println("No holidays added yet.");

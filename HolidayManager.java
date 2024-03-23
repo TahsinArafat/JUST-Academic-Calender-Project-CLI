@@ -25,6 +25,10 @@ class HolidayManager {
                 case 1:
                     System.out.print("Enter date (dd/mm/yyyy): ");
                     String date = scanner.nextLine();
+                    while (!calendar.isValidDayFormat(date)) {
+                        System.out.print("Invalid date format. Please enter again (dd/mm/yyyy): ");
+                        date = scanner.nextLine();
+                    }
                     System.out.print("Enter holiday name: ");
                     Scanner lineScanner = new Scanner(System.in).useDelimiter("\n");
                     String name = lineScanner.next();
