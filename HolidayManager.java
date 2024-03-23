@@ -1,7 +1,19 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-class HolidayManager {
+public class HolidayManager {
     Calendar calendar = new Calendar();
+    ArrayList<Integer> weekends = new ArrayList<>();
+
+    Boolean isWeekend(String date) {
+        int day = MonthlyCalender.getDayOfWeek(date);
+        return weekends.contains(day);
+    }
+
+    Boolean isWeekend(int day, int month, int year) {
+        int dayOfWeek = MonthlyCalender.getDayOfWeek(day, month, year);
+        return weekends.contains(dayOfWeek);
+    }
 
     void run() {
         Scanner scanner = new Scanner(System.in);
@@ -13,6 +25,7 @@ class HolidayManager {
             System.out.println("4. Monthly Calendar");
             System.out.println("5. Modify a Holiday");
             System.out.println("6. Delete Holiday");
+            System.out.println("7. Add or Modify Weekend");
             System.out.println("0. Exit");
             System.out.print("Enter option: ");
 
@@ -42,6 +55,8 @@ class HolidayManager {
                     String result = calendar.isHoliday(date);
                     if (!result.equals("No holiday")) {
                         System.out.println("It's a holiday: " + result);
+                    } else if (isWeekend(date)) {
+                        System.out.println("It's a weekend.");
                     } else {
                         System.out.println(result);
                     }
@@ -54,7 +69,8 @@ class HolidayManager {
                     int month = scanner.nextInt();
                     System.out.print("Enter year: ");
                     int year = scanner.nextInt();
-                    calendar.listHolidaysByMonth(month, year);
+                    calendar.listHolidaysByMonth(month, year, weekends);
+                    System.out.println("Weekends: " + weekends);
                     break;
                 case 5:
                     System.out.print("Enter date (dd/mm/yyyy) to modify: ");
@@ -82,6 +98,37 @@ class HolidayManager {
                         }
                     }
                     return;
+                case 7: {
+                    System.out.println("1. Add Weekend");
+                    System.out.println("2. Delete Weekend");
+                    System.out.println("3. View Weekends");
+                    System.out.print("Enter option: ");
+                    int weekendOption = Integer.valueOf(scanner.nextLine());
+                    switch (weekendOption) {
+                        case 1:
+                            System.out.print("Enter day of week (1-7, Starts from Sunday): ");
+                            int day = Integer.valueOf(scanner.nextLine());
+                            weekends.add(day);
+                            System.out.println("Weekend added successfully.");
+                            break;
+                        case 2:
+                            System.out.print("Enter day of week (1-7, Starts from Sunday) to delete: ");
+                            day = Integer.valueOf(scanner.nextLine());
+                            if (weekends.contains(day)) {
+                                weekends.remove(day);
+                                System.out.println("Weekend deleted successfully.");
+                            } else {
+                                System.out.println("Weekend not found.");
+                            }
+                            break;
+                        case 3:
+                            System.out.println("Weekends: " + weekends);
+                            break;
+                        default:
+                            System.out.println("Invalid option. Please try again.");
+                    }
+                }
+                    break;
                 default:
                     System.out.println("Invalid option. Please try again.");
             }

@@ -12,6 +12,22 @@ public class MonthlyCalender {
         return DAYS[date.getDayOfWeek().getValue() % 7];
     }
 
+    static int getDayOfWeek(String date) {
+        String[] parts = date.split("/");
+        int day = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int year = Integer.parseInt(parts[2]);
+        LocalDate localDate = LocalDate.of(year, month, day);
+        int dayOfWeek = localDate.getDayOfWeek().getValue();
+        return dayOfWeek % 7 + 1;
+    }
+
+    static int getDayOfWeek(int day, int month, int year) {
+        LocalDate localDate = LocalDate.of(year, month, day);
+        int dayOfWeek = localDate.getDayOfWeek().getValue();
+        return dayOfWeek % 7 + 1;
+    }
+
     static String getMonthName(int month) {
         return MONTHS[month - 1];
     }
@@ -34,7 +50,7 @@ public class MonthlyCalender {
         return val;
     }
 
-    static void MonthPrint(int month, int year, List<Integer> holidays) {
+    static void MonthPrint(int month, int year, List<Integer> holidays, ArrayList<Integer> weekends) {
         System.out.println("JUST Academic Calender of\n" + getMonthName(month) + ", " + year);
         String firstDayOfWeek = getDayOfWeek(month, year);
         int lastDayOfMonth = MONTH_DAYS[month];
@@ -56,6 +72,8 @@ public class MonthlyCalender {
             System.out.print("|");
             for (int i = j * 7; i < (j + 1) * 7; i++) {
                 if (dates[i] != "- " && holidays.contains(StringDayToInt(dates[i]))) {
+                    System.out.print("*");
+                } else if (dates[i] != "- " && weekends.contains(getDayOfWeek(StringDayToInt(dates[i]), month, year))) {
                     System.out.print("*");
                 } else {
                     System.out.print(" ");

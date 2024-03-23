@@ -64,7 +64,7 @@ class Calendar {
         }
     }
 
-    public void listHolidaysByMonth(int month, int year) {
+    public void listHolidaysByMonth(int month, int year, ArrayList<Integer> weekends) {
         List<Integer> dates = new ArrayList<>();
         List<String> holidayDetails = new ArrayList<>();
         for (Holiday holiday : holidays) {
@@ -74,9 +74,9 @@ class Calendar {
                 holidayDetails.add(holiday.getDate() + " - " + holiday.getName());
             }
         }
-        MonthlyCalender.MonthPrint(month, year, dates);
+        MonthlyCalender.MonthPrint(month, year, dates, weekends);
         if (holidayDetails.isEmpty()) {
-            System.out.println("No holidays added yet.");
+            System.out.println("No custom holidays added yet.");
         } else {
             System.out.println("List of Holidays in " + MonthlyCalender.getMonthName(month) + ", " + year + ":");
             for (String holiday : holidayDetails) {
