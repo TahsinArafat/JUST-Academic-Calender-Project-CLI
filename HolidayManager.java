@@ -43,7 +43,7 @@ public class HolidayManager {
                         date = scanner.nextLine();
                     }
                     System.out.print("Enter holiday name: ");
-                    Scanner lineScanner = new Scanner(System.in).useDelimiter("\n");
+                    Scanner lineScanner = new Scanner(scanner.nextLine()).useDelimiter("\n");
                     String name = lineScanner.next();
                     calendar.addHoliday(new Holiday(date, name));
                     System.out.println("Holiday added successfully.");
