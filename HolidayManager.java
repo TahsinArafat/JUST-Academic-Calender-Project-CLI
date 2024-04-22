@@ -117,10 +117,16 @@ public class HolidayManager {
                         case 2:
                             System.out.print("Enter day of week (1-7, Starts from Sunday) to delete: ");
                             day = Integer.valueOf(scanner.nextLine());
-                            if (weekends.contains(day)) {
-                                weekends.remove(day);
-                                System.out.println("Weekend deleted successfully.");
-                            } else {
+                            boolean found = false;
+                            for (int i = 0; i < weekends.size(); i++) {
+                                if (weekends.get(i) == day) {
+                                    weekends.remove(i);
+                                    System.out.println("Weekend deleted successfully.");
+                                    found = true;
+                                    // break;
+                                }
+                            }
+                            if (!found) {
                                 System.out.println("Weekend not found.");
                             }
                             break;
